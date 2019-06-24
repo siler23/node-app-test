@@ -1,6 +1,6 @@
 pipeline {
-  
-  agent { label "node-web-app-${UUID.randomUUID().toString()}"}
+
+  agent any
 
   environment {
     registry = 'https://wsc-ibp-icp-cluster.icp:8500'  
