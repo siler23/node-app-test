@@ -9,7 +9,7 @@ pipeline {
       credentialLabel = 'docker'
     }
 
-    node(label){
+    agent(label){
  
     stages {
 
