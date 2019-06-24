@@ -37,7 +37,9 @@ pipeline {
       }
 
         stage('Remove Docker Image After Push') {
-           sh "docker rmi ${customImage}"
+          steps {
+            sh "docker rmi ${customImage}"
+          }
         }
     }
 }
