@@ -38,7 +38,7 @@ pipeline {
             customImage = 
             customImage.push()
             customImage.push('latest')*/
-          sh "echo 'today is the day'"
+          sh "echo 'today is the day.'"
         }
       }
     }
