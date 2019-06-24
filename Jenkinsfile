@@ -22,11 +22,14 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         script {
-          withDockerRegistry([credentialsId: 'docker', url: 'https://wsc-ibp-icp-cluster.icp:8500']){
+          /*withDockerRegistry([credentialsId: 'docker', url: 'https://wsc-ibp-icp-cluster.icp:8500']){
             customImage = docker.build("${image}:${env.BUILD_ID}")
             customImage.push()
-            customImage.push('latest')
-          }
+            customImage.push('latest')*/
+          docker.withRegistry('https://wsc-ibp-icp-cluster.icp:8500', 'docker')  
+          customImage = docker.build("${image}:${env.BUILD_ID}")
+          customImage.push()
+          customImage.push('latest')
         }
       }
     }
