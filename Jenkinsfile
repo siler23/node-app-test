@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   environment {
-    registry = 'https://wsc-ibp-icp-cluster.icp:8500'  
+    registry = 'wsc-ibp-icp-cluster.icp:8500'  
     namespace = 'walmart-lab'
     image = 'node-web-app'
     arch = 's390x'
@@ -31,7 +31,7 @@ pipeline {
     stage('Push Docker Image') {
       steps {
         script {
-          withDockerRegistry([credentialsId: "${credentialLabel}", url: "${registry}"]){
+          withDockerRegistry([credentialsId: "${credentialLabel}", url: "https://${registry}"]){
             customImage.push()
             customImage.push('latest')
           }
