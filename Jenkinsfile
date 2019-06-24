@@ -41,7 +41,7 @@ pipeline {
 
       stage('Remove Docker Image After Push') {
         steps {
-          sh "docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep \"${imageName}\")"
+          sh "docker rmi \$(docker images --format '{{.Repository}}:{{.Tag}}' | grep \"${imageName}\")"
         }
       }
     }
