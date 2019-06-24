@@ -41,7 +41,7 @@ pipeline {
 
       stage('Remove Docker Image After Push') {
         steps {
-          sh "docker rmi \"${imageName}:${env.BUILD_ID}\""
+          sh "docker rmi \"${imageName}:${env.BUILD_ID}\" && docker rmi \"${imageName}:latest\""
         }
       }
     }
