@@ -23,7 +23,7 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         script {
-          customImage = docker.build("${image}:${env.BUILD_ID}")
+          customImage = docker.build("${imageName}:${env.BUILD_ID}")
         }
       }
     }
