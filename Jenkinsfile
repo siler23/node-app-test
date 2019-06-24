@@ -1,14 +1,15 @@
 pipeline {
     environment {
+      label = "node-web-app-${UUID.randomUUID().toString()}"
       registry = 'https://wsc-ibp-icp-cluster.icp:8500'  
       namespace = 'walmart-lab'
       image = 'node-web-app'
       arch = 's390x'
       imageName = "${registry}/${namespace}/${image}-${arch}"
-      customImage = ""
       credentialLabel = 'docker'
     }
-    agent any
+
+    node(label){
  
     stages {
 
@@ -21,7 +22,10 @@ pipeline {
       stage('Build Docker Image') {
         steps {
           script {
+            docker.withRegistry(registry, credentialLabel)
             customImage = docker.build("${image}:${env.BUILD_ID}")
+            customImage.push()
+            customImage.push('latest')
           }
         }
       }
@@ -29,9 +33,11 @@ pipeline {
       stage('Push Docker Image') {
         steps {
           script {
-            docker.withRegistry("${registry}", "${credentialLabel}")
-            customImage.push()
-            customImage.push('latest')
+           # docker.withRegistry(registry, credentialLabel)
+            #customImage = 
+            #customImage.push()
+            #customImage.push('latest')
+            sh "echo 'today is the day'"
           }
         }
       }
@@ -42,4 +48,5 @@ pipeline {
           }
         }
     }
+  }
 }
