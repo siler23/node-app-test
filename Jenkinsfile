@@ -33,10 +33,10 @@ pipeline {
       stage('Push Docker Image') {
         steps {
           script {
-           # docker.withRegistry(registry, credentialLabel)
-            #customImage = 
-            #customImage.push()
-            #customImage.push('latest')
+           /*docker.withRegistry(registry, credentialLabel)
+            customImage = 
+            customImage.push()
+            customImage.push('latest')*/
             sh "echo 'today is the day'"
           }
         }
