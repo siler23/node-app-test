@@ -1,6 +1,8 @@
 pipeline {
+  
+  agent { label "node-web-app-${UUID.randomUUID().toString()}"}
+
   environment {
-    label = "node-web-app-${UUID.randomUUID().toString()}"
     registry = 'https://wsc-ibp-icp-cluster.icp:8500'  
     namespace = 'walmart-lab'
     image = 'node-web-app'
@@ -8,8 +10,6 @@ pipeline {
     imageName = "${registry}/${namespace}/${image}-${arch}"
     credentialLabel = 'docker'
   }
-
-  agent label
  
   stages {
 
