@@ -9,6 +9,7 @@ pipeline {
     arch = 's390x'
     imageName = "${registry}/${namespace}/${image}-${arch}"
     credentialLabel = 'docker'
+    customImage=''
   }
  
   stages {
@@ -22,14 +23,7 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         script {
-          /*withDockerRegistry([credentialsId: 'docker', url: 'https://wsc-ibp-icp-cluster.icp:8500']){
-            customImage = docker.build("${image}:${env.BUILD_ID}")
-            customImage.push()
-            customImage.push('latest')*/
-          docker.withRegistry('https://wsc-ibp-icp-cluster.icp:8500', 'docker')  
           customImage = docker.build("${image}:${env.BUILD_ID}")
-          customImage.push()
-          customImage.push('latest')
         }
       }
     }
@@ -37,11 +31,10 @@ pipeline {
     stage('Push Docker Image') {
       steps {
         script {
-           /*docker.withRegistry(registry, credentialLabel)
-            customImage = 
+          withDockerRegistry([credentialsId: "${credentialLabel}", url: "${registry}"]){
             customImage.push()
-            customImage.push('latest')*/
-          sh "echo 'today is the day.'"
+            customImage.push('latest')
+          }
         }
       }
     }
