@@ -3,7 +3,7 @@ pipeline {
   environment {
     registry = 'wsc-ibp-icp-cluster.icp:8500'  
     namespace = 'walmart-lab'
-    app = 'node-web-app'
+    app = 'node-web-app-wsc'
     arch = 'amd64'
     imageName = "${registry}/${namespace}/${app}-${arch}"
     credentialLabel = 'team00'
