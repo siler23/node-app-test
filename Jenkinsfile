@@ -24,6 +24,15 @@ pipeline {
       }
     }
 
+    stage ('Tests') {
+      steps {
+        sh "echo Running My Test Scripts"
+        /*
+          Would put tests here
+        */
+      }
+    }
+
     stage('Build Docker Image') {
       steps {
         script {
