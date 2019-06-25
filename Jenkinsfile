@@ -8,12 +8,11 @@ pipeline {
     imageName = "${registry}/${namespace}/${app}-${arch}"
     credentialLabel = 'team00'
     customImage = ''
-    podlabel = "${app}-${UUID.randomUUID().toString()}"
   }
 
   agent { 
     kubernetes {
-      label "${app}-${UUID.randomUUID().toString()}"
+      label "default-jenkins-${UUID.randomUUID().toString()}"
     }
   }
  
