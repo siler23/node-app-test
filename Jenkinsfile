@@ -1,16 +1,19 @@
 pipeline {
-  def registry = 'wsc-ibp-icp-cluster.icp:8500'  
-  def namespace = 'walmart-lab'
-  def app = 'node-web-app-wsc'
-  def arch = 'amd64'
-  def imageName = "${registry}/${namespace}/${app}-${arch}"
-  def credentialLabel = 'team00'
-  def customImage = ''
-  def podlabel = "${app}-${UUID.randomUUID().toString()}"
+
+  environment {
+    registry = 'wsc-ibp-icp-cluster.icp:8500'  
+    namespace = 'walmart-lab'
+    app = 'node-web-app-wsc'
+    arch = 'amd64'
+    imageName = "${registry}/${namespace}/${app}-${arch}"
+    credentialLabel = 'team00'
+    customImage = ''
+    podlabel = "${app}-${UUID.randomUUID().toString()}"
+  }
 
   agent { 
     kubernetes {
-      label podlabel
+      label "${app}-${UUID.randomUUID().toString()}"
     }
   }
  
