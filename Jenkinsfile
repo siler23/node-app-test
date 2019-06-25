@@ -10,11 +10,12 @@ pipeline {
     customImage = ''
     label = "${app}-${UUID.randomUUID().toString()}"
   }
-  
+
   agent { 
     kubernetes {
       label label
     }
+  }
  
   stages {
 
