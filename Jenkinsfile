@@ -1,15 +1,17 @@
 pipeline {
 
-  agent any
-
+  agent { 
+    label "default-jenkins"
+  }
+  
   environment {
     registry = 'wsc-ibp-icp-cluster.icp:8500'  
     namespace = 'walmart-lab'
-    image = 'node-web-app'
-    arch = 's390x'
-    imageName = "${registry}/${namespace}/${image}-${arch}"
+    app = 'node-web-app'
+    arch = 'amd64'
+    imageName = "${registry}/${namespace}/${app}-${arch}"
     credentialLabel = 'docker'
-    customImage=''
+    customImage = ''
   }
  
   stages {
