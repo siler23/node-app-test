@@ -6,13 +6,14 @@ pipeline {
     app = 'node-web-app'
     arch = 'amd64'
     imageName = "${registry}/${namespace}/${app}-${arch}"
-    credentialLabel = 'docker'
+    credentialLabel = 'team00'
     customImage = ''
+    podlabel = "${app}-${UUID.randomUUID().toString()}"
   }
 
   agent { 
     kubernetes {
-      label 'default-jenkins'
+      label "${podlabel}"
     }
   }
  
