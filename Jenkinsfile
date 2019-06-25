@@ -1,6 +1,6 @@
 pipeline {
 
-    environment {
+  environment {
     registry = 'wsc-ibp-icp-cluster.icp:8500'  
     namespace = 'walmart-lab'
     app = 'node-web-app'
@@ -13,7 +13,7 @@ pipeline {
 
   agent { 
     kubernetes {
-      label podlabel
+      label 
     }
   }
  
