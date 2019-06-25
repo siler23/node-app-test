@@ -8,12 +8,12 @@ pipeline {
     imageName = "${registry}/${namespace}/${app}-${arch}"
     credentialLabel = 'docker'
     customImage = ''
-    label = "${app}-${UUID.randomUUID().toString()}"
+    podlabel = "${app}-${UUID.randomUUID().toString()}"
   }
 
   agent { 
     kubernetes {
-      label label
+      label podlabel
     }
   }
  
