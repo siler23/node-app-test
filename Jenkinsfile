@@ -13,7 +13,7 @@ pipeline {
 
   agent { 
     kubernetes {
-      label ${podLabel}
+      label "${podLabel}"
     }
   }
  
