@@ -6,7 +6,7 @@ pipeline {
     app = 'node-web-app-wsc'
     arch = 'amd64'
     imageName = "${registry}/${namespace}/${app}-${arch}"
-    credentialLabel = 'team00'
+    dockerID = '71fb157d-3d75-47f8-8109-6a99280637df'
     customImage = ''
   }
 
@@ -35,7 +35,7 @@ pipeline {
     stage('Push Docker Image') {
       steps {
         script {
-          withDockerRegistry([credentialsId: "${credentialLabel}", url: "https://${registry}"]){
+          withDockerRegistry([credentialsId: "${dockerID}", url: "https://${registry}"]){
             customImage.push()
             customImage.push('latest')
           }
